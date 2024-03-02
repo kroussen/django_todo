@@ -7,8 +7,7 @@ class Task(models.Model):
     description = models.TextField(verbose_name='Описание задачи')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания задачи')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата редактирования задачи')
-    completed_at = models.DateTimeField(auto_now=True, verbose_name='Дата завершения задачи')
-    due_date = models.DateField(blank=True, null=True)
+    due_date = models.DateField(blank=True, null=True, verbose_name='Дата завершения задачи')
     completed = models.BooleanField(default=False, verbose_name='Завершена?')
 
     PRIORITY_CHOICES = [
@@ -20,4 +19,4 @@ class Task(models.Model):
     priority = models.CharField(max_length=100, choices=PRIORITY_CHOICES, default='средний', verbose_name='Приоритет')
 
     def __str__(self):
-        return f"{self.title} - {self.created_at}: {self.completed}"
+        return f"{self.title}: {self.completed}"
